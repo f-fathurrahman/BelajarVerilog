@@ -69,6 +69,16 @@ module test_mux2;
   wire o;
 \end{verilogcode}
 
-Potongan kode di atas mendefinisikan suatu modul bernama {\tt\small test\_mux2}.
+Baris pertama mendefinisikan suatu modul bernama {\tt\small test\_mux2}. Kode
+ini tidak memiliki definisi port karena hanya dimaksudkan sebagai {\it testbench}
+untuk modul {\tt\textbf{mux2}}. Pada baris selanjutnya,
+tiga sinyal dengan nama {\tt\textbf{i1}}, {\tt\textbf{i2}},
+dan {\tt\textbf{s}} dideklarasikan. Tiga sinyal ini nantinya akan menjadi input untuk
+modul {\tt\textbf{mux2}}
+yang nilainya dapat kita atur nanti.
+Sebagai output dari modul {\tt\textbf{mux}}, satu sinyal dengan tipe {\tt\textbf{wire}}
+didefinisikan pada baris selanjutnya.
+
+
 
 {\color{red} TODO: Contoh simulasi dengan ModelSim}
