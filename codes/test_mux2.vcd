@@ -1,0 +1,64 @@
+$date
+	Thu Feb  9 04:28:53 2017
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module test_mux2 $end
+$var wire 1 ! o $end
+$var reg 1 " i1 $end
+$var reg 1 # i2 $end
+$var reg 1 $ s $end
+$scope module uut $end
+$var wire 1 ! f $end
+$var wire 1 % g $end
+$var wire 1 & h $end
+$var wire 1 ' k $end
+$var wire 1 ( s $end
+$var wire 1 ) x1 $end
+$var wire 1 * x2 $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+1*
+0)
+1(
+0'
+1&
+0%
+1$
+1#
+0"
+1!
+$end
+#1000
+0!
+0&
+0#
+0*
+1"
+1)
+#2000
+1!
+1&
+1#
+1*
+#3000
+0!
+1'
+0&
+0"
+0)
+0$
+0(
+#4000
+1!
+1%
+1"
+1)
+#5000

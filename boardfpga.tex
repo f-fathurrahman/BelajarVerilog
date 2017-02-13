@@ -1,0 +1,68 @@
+\section{Eksperimen dengan hardware (FPGA)}
+
+\subsection{Pengenalan IO}
+
+{\color{red} Perlu gambar board FPGA yang akan digunakan}
+
+Beberapa daftar port dari board FPGA yang digunakan:
+
+\input{tabel_pin.tex}
+
+Untuk PIN assignment, buat skematik atau file Verilog terlebih dahulu, kemudian compile.
+Buka PIN assignment, set pin yang diperlukan.
+
+
+\subsubsection{LED}
+
+Assignment nilai boolean ke LED
+
+\subsubsection{Push buttons}
+
+\subsubsection{Seven segments}
+
+\subsubsection{Buzzer}
+
+
+\subsubsection{Clock}
+{\color{red} Berapa frekuensi clock yang digunakan ? 50 MHz ?}
+
+LED blinking (sudah menggunakan counter, implementasinya
+mudah pada Verilog)
+
+\subsubsection{IR}
+Gunakan kode Verilog yang sudah ada.
+
+
+\subsection{Rangkaian kombinasional}
+
+XOR
+
+half adder dan full adder
+
+Menyalakan satu atau beberapa LED dengan kombinasi input
+4 push button
+\begin{itemize}
+\item LED1 menyala jika button1 dan button3 ditekan atau button1 dan button 4 ditekan
+\item LED2 menyala jika button2 dan button4 ditekan atau button1 ditekan
+\end{itemize}
+
+
+
+
+
+\subsection{Rangkaian sekuensial}
+
+Implementasi D flip-flop
+
+Implementasi J-K flip-flop dan
+Toggle operation: buzzer dan LED
+
+register, counter
+
+Kalkulator sederhana, input dari remote IR ?
+
+Rangkaian multiplexing LED
+
+Menampilkan LED perdigit
+
+IR

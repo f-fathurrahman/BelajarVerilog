@@ -1,0 +1,74 @@
+\section{Simulasi rangkaian digital dengan Verilog}
+
+Selain menggunakan Quartus Prime, kita juga dapat menggunakan tools lain untuk
+mempelajari Verilog. Beberapa tools yang sering digunakan
+adalah \textbf{Icarus Verilog} dan \textbf{GTKWave}. Icarus
+Verilog adalah compiler Verilog gratis yang dapat digunakan
+untuk simulasi rangkaian digital dengan Verilog. Simulasi ini
+biasanya menghasilkan output waveform yang dapat divisualisasi dengan
+menggunakan GTKWave.
+
+Pada Ubuntu, Icarus Verilog dan GTKWave dapat diinstal dengan menggunakan perintah
+\begin{minted}{text}
+sudo apt install iverilog gtkwave
+\end{minted}
+Icarus Verilog dan GTKWave juga dapat digunakan pada sistem operasi Windows.
+
+Kode Verilog yang ditulis untuk simulasi suatu rangkaian digital sering
+disebut dengan \textit{textbench}. Modul yang diuji pada simulasi tersebut
+disebut sebagai \textit{unit under testing}.
+
+Sebagai contoh pertama, kita akan membuat kode Verilog untuk simulasi
+modul {\tt\textbf{mux2}}. Buat file baru dengan nama {\tt test\_mux2.v}
+yang isinya sebagai berikut.
+\begin{mdframed}[backgroundcolor=mintedbg]
+{\setstretch{1.0}
+\inputminted[breaklines,fontsize=\small]{verilog}{codes/test_mux2.v}
+}\end{mdframed}
+
+Compile file ini dengan Icarus Verilog:
+\begin{minted}[fontsize=\small]{text}
+iverilog test_mux2.v -o test_mux2
+\end{minted}
+
+Perintah ini akan menghasilkan file baru dengan nama {\tt\small test\_mux2}.
+File ini merupakan file teks yang dapat dieksekusi dengan perintah {\tt vvp}.
+Pada sistem Linux, file ini sudah bersifat \textit{executable} dan dapat dieksekusi
+langsung di terminal
+\begin{minted}[fontsize=\small]{text}
+> ./test_mux2
+VCD info: dumpfile test_mux2.vcd opened for output.
+time =     0, i1 = 0, i2 = 1, s = 1, o = 1
+time =     1, i1 = 1, i2 = 0, s = 1, o = 0
+time =     2, i1 = 1, i2 = 1, s = 1, o = 1
+time =     3, i1 = 0, i2 = 1, s = 0, o = 0
+time =     4, i1 = 1, i2 = 1, s = 0, o = 1
+\end{minted}
+
+
+
+Berikut ini adalah beberapa penjelasan kode di atas.
+
+\begin{verilogcode}
+`timescale 1ns / 1ps
+\end{verilogcode}
+Baris ini menyatakan bahwa satuan waktu dalam simulasi adalah 1 ns dan
+resolusinya adalah 1 ps (0.001 ns).
+
+\begin{verilogcode}
+`include "mux2.v"
+\end{verilogcode}
+Baris ini hanya menyisipkan file {\tt mux2.v} yang berisi definisi dari modul {\tt mux2}.
+Baris ini tidak diperlukan apabila \textit{testbench} diberikan pada file yang sama.
+Beberapa tools simulasi dapat mencari definisi modul yang diperlukan sehingga
+baris ini biasanya juga tidak diperlukan pada kasus tersebut.
+
+\begin{verilogcode}
+module test_mux2;
+  reg i1, i2, s;
+  wire o;
+\end{verilogcode}
+
+Potongan kode di atas mendefinisikan suatu modul bernama {\tt\small test\_mux2}.
+
+{\color{red} TODO: Contoh simulasi dengan ModelSim}

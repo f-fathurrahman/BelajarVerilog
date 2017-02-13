@@ -1,0 +1,104 @@
+\section{Persiapan USB-Blaster pada Linux}
+
+Diperlukan untuk hardware.
+
+Berikut ini adalah referensi yang dapat digunakan:
+{\small
+\begin{itemize}
+\item \url{https://www.altera.com/support/support-resources/download/drivers/dri-usb_b-lnx.html}
+\item \url{http://www.fpga-dev.com/altera-usb-blaster-with-ubuntu/}
+\end{itemize}
+}
+
+USB Blaster diperlukan untuk mendownload program ke board.
+
+Tidak perlu instalasi driver khusus untuk Linux.
+
+Quartus Prime menggunakan driver \verb|usb_device|
+pada Linux untuk mengakses USB-Blaster.
+
+Secara default, yang dapat mengakses USB Blaster adalah root. Agar dapat digunakan
+untuk user lain selain root, perlu setting tambahan untuk \verb|udev|.
+
+Hubungkan USB-Blaster ke komputer.
+
+Cek output dari \verb|dmesg| ketika USB-Blaster terhubung ke komputer.
+{\small\setstretch{1.0}
+\begin{minted}{text}
+dmesg | tail
+[29293.151196] usb 3-2: new full-speed USB device number 2 using xhci_hcd
+[29293.282045] usb 3-2: New USB device found, idVendor=09fb, idProduct=6001
+[29293.282056] usb 3-2: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[29293.282061] usb 3-2: Product: USB-Blaster
+[29293.282066] usb 3-2: Manufacturer: Altera
+[29293.282070] usb 3-2: SerialNumber: 00000000
+\end{minted}
+}
+
+Cek juga output dari \verb|lsusb|:
+{\small\setstretch{1.0}
+\begin{minted}{text}
+lsusb
+Bus 003 Device 002: ID 09fb:6001 Altera Blaster
+\end{minted}
+}
+
+Berdasarkan output dari \verb|lsusb| diperoleh informasi
+sebagai berikut:
+{\small\setstretch{1.0}
+\begin{minted}{text}
+Vendor  ID: 09fb
+Product ID: 6001
+\end{minted}
+}
+
+Buat file baru: {\tt\small /etc/udev/rules.d/51-altera-usb-blaster.rules}
+dengan konten sebagai berikut. (perlu akses root)
+{\small\setstretch{1.0}
+\begin{minted}{text}
+SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6001", MODE="0666"
+\end{minted}
+}
+
+Kemudian reload {\tt\small udev} (perlu akses root). Lepaskan koneksi USB
+Blaster dari komputer sebelum melakukan perintah ini.
+{\small
+\begin{minted}{text}
+udevadm control --reload
+\end{minted}
+}
+
+Jika tidak ada error, maka seharusnya USB-Blaster dan board yang digunakan sudah
+dapat diakses melalui komputer.
+Tes apakah sudah dapat FPGA sudah dapat diakses
+{\small
+\begin{minted}{text}
+<quartus_dir>/16.1/quartus/bin/jtagconfig
+\end{minted}
+}
+
+Sebaiknya langkah berikut ini juga dilakukan agar daemon \verb|jtagd|
+dapat mengenali
+nama FPGA yang digunakan.
+{\small
+\begin{minted}{text}
+cp <quartus_dir>/16.1/quartus/linux64/pgm_parts.txt /etc/jtagd/jtagd.pgm_parts
+\end{minted}
+}
+
+Tes apakah FPGA sudah dapat diakses
+{\small
+\begin{minted}{text}
+<quartus_dir>/16.1/quartus/bin/jtagconfig
+\end{minted}
+}
+
+
+%{\color{red} XXX: Butuh konfirmasi lebih lanjut mengenai ini}
+
+Perintah {\tt\small jtagconfig} akan secara otomatis menjalankan daemon
+{\tt\small jtagd}.
+Daemon ini dapat konflik dengan daemon {\tt\small jtagd} yang akan dijalankan
+ketika menjalankan Quartus Prime Lite. Untuk amannya, pastikan bahwa
+tidak ada daemon {\tt\small jtagd} yang berjalan sebelum menjalankan
+Quartus Prime Lite.
