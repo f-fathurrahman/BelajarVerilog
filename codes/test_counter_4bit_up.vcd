@@ -1,0 +1,127 @@
+$date
+	Mon Feb 13 11:32:42 2017
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module test_counter_4bit_up $end
+$var wire 4 ! count [3:0] $end
+$var reg 1 " clock $end
+$var reg 1 # enable $end
+$var reg 1 $ reset $end
+$scope module UUT $end
+$var wire 1 % clock $end
+$var wire 1 & enable $end
+$var wire 1 ' reset $end
+$var reg 4 ( count [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx (
+0'
+0&
+0%
+0$
+0#
+0"
+bx !
+$end
+#10000
+b0 (
+b0 !
+1$
+1'
+1"
+1%
+#20000
+1#
+1&
+0$
+0'
+0"
+0%
+#30000
+b1 (
+b1 !
+1"
+1%
+#40000
+0"
+0%
+#50000
+b10 (
+b10 !
+1"
+1%
+#60000
+0"
+0%
+#70000
+b11 (
+b11 !
+1"
+1%
+#80000
+0"
+0%
+#90000
+b100 (
+b100 !
+1"
+1%
+#100000
+0"
+0%
+#110000
+b101 (
+b101 !
+1"
+1%
+#120000
+0"
+0%
+#130000
+b110 (
+b110 !
+1"
+1%
+#140000
+0"
+0%
+#150000
+b111 (
+b111 !
+1"
+1%
+#160000
+0"
+0%
+#170000
+b1000 (
+b1000 !
+1"
+1%
+#180000
+0"
+0%
+#190000
+b1001 (
+b1001 !
+1"
+1%
+#200000
+0"
+0%
+#210000
+b1010 (
+b1010 !
+1"
+1%
+#220000
+0"
+0%

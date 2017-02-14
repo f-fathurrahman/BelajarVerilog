@@ -46,7 +46,6 @@ time =     4, i1 = 1, i2 = 1, s = 0, o = 1
 \end{minted}
 
 
-
 Berikut ini adalah beberapa penjelasan kode di atas.
 
 \begin{verilogcode}
@@ -84,6 +83,27 @@ didefinisikan pada baris selanjutnya.
 \end{verilogcode}
 
 Pada baris ini, satu \textit{instance} dari modul {\tt\textbf{mux2}} didefinisikan
-dengan menggunakan variabel
+dengan menggunakan nama $uut$ (\textit{unit under test}).
+
+Kode yang dieksekusi pada awal simulasi diberikan di dalam blok
+{\tt\textbf{initial}}.
+
+\begin{verilogcode}
+  $dumpfile("test_mux2.vcd");
+  $dumpvars(0, test_mux2);
+\end{verilogcode}
+
+Dua baris di atas menyatakan bahwa hasil simulasi akan akan ditulis
+ke dalam \textit{waveform} yang disimpan pada file \textit{textit}.
+
+\begin{verilogcode}
+i1 = 1'b0;
+i2 = 1'b1;
+s  = 1'b1;
+\end{verilogcode}
+
+Karena potongan kode di atas diberikan di dalam blok {\tt\textbf{initial}}
+maka kode di atas memberikan nilai input i1, i2, dan s pada saat awal
+simulasi
 
 {\color{red} TODO: Contoh simulasi dengan ModelSim}

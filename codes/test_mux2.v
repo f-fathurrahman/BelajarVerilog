@@ -24,7 +24,8 @@ module test_mux2;
   end
 
   initial begin
-    $monitor("t = %5d, i1 = %b, i2 = %b, s = %b, o = %b", $time, i1, i2, s, o);
+    $display(" t   i1   i2   s   o");
+    $monitor("%2d   %b    %b    %b    %b", $time, i1, i2, s, o);
   end
 
 endmodule
