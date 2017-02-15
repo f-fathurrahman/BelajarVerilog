@@ -16,16 +16,16 @@ module test_mux2;
     s  = 1'b1;
 
     #1 i1 = 1'b1; i2 = 1'b0;
-    #1 i2 = 1'b1;
-    #1 s  = 1'b0; i1 = 1'b0;
+    #2 i2 = 1'b1;
+    #4 s  = 1'b0; i1 = 1'b0;
     #1 i1 = 1'b1;
 
     #1 $finish;
   end
 
   initial begin
-    $display(" t   i1   i2   s   o");
-    $monitor("%2d   %b    %b    %b    %b", $time, i1, i2, s, o);
+    $display("  t   i1   i2   s    o");
+    $monitor("%1dns   %b    %b    %b    %b", $time, i1, i2, s, o);
   end
 
 endmodule

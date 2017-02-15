@@ -38,11 +38,12 @@ langsung di terminal
 \begin{minted}[fontsize=\small]{text}
 > ./test_mux2
 VCD info: dumpfile test_mux2.vcd opened for output.
-time =     0, i1 = 0, i2 = 1, s = 1, o = 1
-time =     1, i1 = 1, i2 = 0, s = 1, o = 0
-time =     2, i1 = 1, i2 = 1, s = 1, o = 1
-time =     3, i1 = 0, i2 = 1, s = 0, o = 0
-time =     4, i1 = 1, i2 = 1, s = 0, o = 1
+  t   i1   i2   s    o
+0ns   0    1    1    1
+1ns   1    0    1    0
+3ns   1    1    1    1
+7ns   0    1    0    0
+8ns   1    1    0    1
 \end{minted}
 
 
@@ -94,7 +95,8 @@ Kode yang dieksekusi pada awal simulasi diberikan di dalam blok
 \end{verilogcode}
 
 Dua baris di atas menyatakan bahwa hasil simulasi akan akan ditulis
-ke dalam \textit{waveform} yang disimpan pada file \textit{textit}.
+ke dalam \textit{waveform} yang disimpan pada file {\tt\textbf{test\_mux2.vcd}}.
+File ini dapat divisualisasikan dengan menggunakan {\sf GTKWave}.
 
 \begin{verilogcode}
 i1 = 1'b0;
@@ -103,8 +105,35 @@ s  = 1'b1;
 \end{verilogcode}
 
 Karena potongan kode di atas diberikan di dalam blok {\tt\textbf{initial}}
-maka kode di atas memberikan nilai input {\tt i1}, i2, dan s pada saat awal
-simulasi.
+maka kode di atas memberikan nilai input {\tt i1}, {\tt i2}, dan {\tt s}
+pada saat awal simulasi.
+
+Untuk mengubah nilai dari input pada saat simulasi, dapat digunakan delay
+pada blok {\tt\textbf{initial}}, seperti pada baris berikutnya. Delay
+dispesifikasikan dengan menggunakan tanda {\tt \#} diikuti dengan lama delay
+dalam satuan yang telah dispesifikasikan sebelumnya (ns).
+
+\begin{verilogcode}
+#1 i1 = 1'b1; i2 = 1'b0;
+#2 i2 = 1'b1;
+#4 s  = 1'b0; i1 = 1'b0;
+#1 i1 = 1'b1;
+#1 $finish;
+\end{verilogcode}
+
+Baris terakhir, simulasi akan dihentikan 1ns setelah eksekusi baris sebelumnya.
+
+Kode berikut ini juga berada dalam blok {\tt\textbf{initial}}, akan
+tetapi pada blok yang berbeda. Bagian ini
+juga dapat diletakkan pada blok {\tt\textbf{initial}}.
+Kode ini akan menampilkan hasil simulasi ke terminal.
+\begin{verilogcode}
+$display("  t   i1   i2   s    o");
+$monitor("%1dns   %b    %b    %b    %b", $time, i1, i2, s, o);
+\end{verilogcode}
+
+Perintah \verb|$monitor| dan \verb|$display| memiliki kemiripan
+dengan \verb|printf| pada bahasa C.
 
 {\color{red} TODO: Contoh simulasi dengan ModelSim}
 
