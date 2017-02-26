@@ -1,0 +1,39 @@
+$date
+	Mon Jan 30 00:05:05 2017
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ps
+$end
+$scope module counter_test $end
+$var reg 1 ! clk $end
+$var reg 11 " counter [10:0] $end
+$var reg 1 # rst $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+1#
+b0 "
+0!
+$end
+#100
+b1 "
+1!
+#200
+0!
+#300
+b10 "
+1!
+#400
+0!
+#500
+b11 "
+1!
+#600
+0!
+#700
+b100 "
+1!
