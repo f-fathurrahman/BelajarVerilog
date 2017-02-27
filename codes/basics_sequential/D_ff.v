@@ -1,4 +1,6 @@
-module D_flipflop(D, clk, Q);
+// behavioral D_ff
+
+module D_ff(D, clk, Q);
 
   input D, clk;
   output reg Q;

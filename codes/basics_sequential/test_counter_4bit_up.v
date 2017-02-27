@@ -26,9 +26,9 @@ module test_counter_4bit_up;
     $display("time clock reset enable count");
     $monitor("%5d %b %b %b %b", $time, clock, reset, enable, count);
 
-    #10 reset = 1;
-    #10 reset = 0; enable = 1;
-    #200 $finish;
+    #5 reset = 1;
+    #5 reset = 0; enable = 1;
+    #400 $finish;
   end
 
 endmodule

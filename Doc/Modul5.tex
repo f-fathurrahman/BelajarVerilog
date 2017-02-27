@@ -1,22 +1,10 @@
-\documentclass[a4paper,11pt,bahasa]{extarticle}
+\documentclass[a4paper,12pt,bahasa]{extarticle}
 \usepackage[a4paper]{geometry}
 \geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
 
 \usepackage{fontspec}
-%\defaultfontfeatures{Ligatures=TeX}
-
-%\setmainfont{Linux Libertine O}
-%\setmonofont{Fira Mono}
-%\setsansfont{Open Sans}
-
-%\setmainfont{Libre Baskerville}
-\setmainfont{Georgia}
-\setmonofont{Fira Mono}
-\setsansfont{Fira Sans}
-
-%\setmainfont{PT Serif}
-%\setsansfont{PT Sans}
-%\setmonofont{PT Mono}
+\setmainfont{Calibri}
+\setmonofont{Courier 10 Pitch}
 
 \setlength{\parindent}{0cm}
 
@@ -43,10 +31,26 @@
 \definecolor{mintedbg}{rgb}{0.95,0.95,0.95}
 \usepackage{mdframed}
 
-\BeforeBeginEnvironment{minted}{\begin{mdframed}[backgroundcolor=mintedbg]}
-\AfterEndEnvironment{minted}{\end{mdframed}}
+%\global\mdfapptodefinestyle{verilognotes}{%
+%rightline=true,%
+%innerleftmargin=10,%
+%innerrightmargin=10,%
+%frametitlerule=true,%
+%frametitlerulewidth=2pt}
+
+\mdfdefinestyle{verilognotes}{%
+  linecolor=blue,
+  linewidth=1pt,
+  frametitlerule=true,
+  frametitlerulewidth=2pt
+}
+
+%\BeforeBeginEnvironment{minted}{\begin{mdframed}[backgroundcolor=mintedbg]}
+%\AfterEndEnvironment{minted}{\end{mdframed}}
+
 
 \begin{document}
+
 
 \title{MODUL V \\
 Implementasi Rangkaian Digital dengan FPGA}
@@ -65,8 +69,9 @@ programmable logic devices dan FPGA
 
 Entri desain
 
-Quartus Prime
+\input{intro_quartus_skematik}
 
+\input{verilog1}
 
 \section{Praktikum}
 
@@ -85,8 +90,8 @@ Prosedur ini diberikan pada contoh menyalakan LED.
 
 \subsubsection{LED}
 
-Buat project baru dengan nama {\sf led\_light},
-misalnya. Kemudian tambahkan file Verilog berikut
+Buat proyek baru dengan nama \textbf{led\_light}, misalnya.
+Kemudian tambahkan file Verilog berikut
 ke project. Kode Verilog ini memberikan nilai logika ke tiap
 LED (hardwired, tanpa ada input).
 
@@ -99,15 +104,15 @@ endmodule
 \end{verilogcode}
 }
 
-Compile file ini dengan cara klik icon {\sf Compile} atau dengan menu
-{\sf Processing -> Start Compilation} atau menggunakan shortcut
-{\sf Ctrl + L}.
+Compile file ini dengan cara klik icon \textbf{Compile} atau dengan menu
+\textbf{Processing -> Start Compilation} atau menggunakan shortcut
+\textbf{Ctrl + L}.
 
 Jika tidak ada kesalahan pada saat proses kompilasi,
 maka langkah selanjutnya adalah melakukan
 PIN assignment, yang dapat dilakukan dengan memilih menu
-{\sf Assignment -> Pin Planner} atau menggunakan shortcut
-{\sf Ctrl + N}. Atur PIN assigment sesuai dengan Tabel \ref{tab:pin}.
+\textbf{Assignment -> Pin Planner} atau menggunakan shortcut
+\textbf{Ctrl + N}. Atur PIN assigment sesuai dengan Tabel \ref{tab:pin}.
 
 \begin{figure}[H]
 \centering
@@ -120,24 +125,24 @@ Compile lagi file tersebut.
 
 Jika tidak ada pesan error, langkah selanjutnya adalah mendownload program
 ini ke FPGA. Proses ini dapat dilakukan dengan cara memilih menu
-{\sf Tools -> Programmer}.
-Klik button {\sf Add File} untuk menambahkan file {\sf led\_light.sof}.
-File ini biasanya ada di dalam subdirektori {\sf output} dari direktori
-project.
-Pastikan juga hardware terdeteksi. Jika belum terdeteksi, tambahkan melalui
-dengan mengklik button {\sf Hardware Setup}.
+\textbf{Tools -> Programmer}.
+Klik button \textbf{Add File} untuk menambahkan file {\tt led\_light.sof}.
+File ini biasanya ada di dalam subdirektori {\tt output} dari direktori
+proyek.
+Pastikan juga hardware telah terdeteksi. Jika belum terdeteksi, tambahkan melalui
+dengan mengklik button \textbf{Hardware Setup}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.6]{images/Programmer_4LED.png}
 \par
-\caption{Tampilan tool {\sf Programmer}}
+\caption{Tampilan tool \textbf{Programmer}}
 \end{figure}
 
-\textbf{Catatan}
-
-Pada board FPGA yang digunakan urutan LED dari kiri ke kanan adalah LED1,
+\begin{mdframed}[style=verilognotes,frametitle={Catatan Verilog}]
+Misalkan pada board FPGA yang digunakan urutan LED dari kiri ke kanan adalah LED1,
 LED2, LED3, dan LED4.
+
 Misalkan memberikan assignment sebagai berikut.
 \begin{itemize}
 \item LED1 diwakili dengan {\tt led[0]}
@@ -145,6 +150,8 @@ Misalkan memberikan assignment sebagai berikut.
 \item LED3 diwakili dengan {\tt led[2]}
 \item LED4 diwakili dengan {\tt led[3]}
 \end{itemize}
+
+
 Misalkan juga kita memberikan nilai logika pada {\tt led} dengan
 kode Verilog berikut.
 \begin{verilogcode}
@@ -154,8 +161,8 @@ Maka nilai 0 (nilai bit paling kanan atau LSB) diberikan pada {\tt led[0]}
 atau LED1. Nilai pada bit kedua dari kanan diberikan untuk {\tt led[1]}, bit ketiga
 untuk {\tt led[2]}, dan bit keempat (paling kiri atau MSB) untuk {\tt led[3]}.
 
-Bagian {\sf output [3:0] led} pada kode di atas dapat diganti
-dengan {\sf output [1:4] led} untuk memudahkan assignment nilai logika
+Bagian {\tt output [3:0] led} pada kode di atas dapat diganti
+dengan {\tt output [1:4] led} untuk memudahkan assignment nilai logika
 sesuai dengan urutan LED di board yang digunakan. Sehingga kita dapat
 melakukan assigment sebagai berikut.
 \begin{itemize}
@@ -164,6 +171,8 @@ melakukan assigment sebagai berikut.
 \item LED3 diwakili dengan {\tt led[3]}
 \item LED4 diwakili dengan {\tt led[4]}
 \end{itemize}
+
+\end{mdframed}
 
 Cobalah bereksprimen dengan cara mengganti-ganti nilai logika
 dari {\tt led}, kemudian isilah tabel berikut.
@@ -227,28 +236,40 @@ Lihat Modul 1.
 
 \subsection{Rangkaian kombinasional}
 
-Membuat rangkaian logika digital sederhana dengan deskripsi sebagai berikut.
+Membuat rangkaian logika digital sederhana dengan spesifikasi sebagai berikut.
 
 \begin{itemize}
-\item input push button sebanyak 4 buah
-\item LED akan menyala jika jumlah push button yang ditekan ganjil
+\item input push button sebanyak 3 buah, misalkan bernama {\tt A}, {\tt B}
+dan {\tt C}
+\item output berupa satu LED dengan nama {\tt led}
+\item LED akan menyala jika jumlah push button
+yang ditekan ganjil
 \end{itemize}
 
-\begin{tabular}{|cccc|c|}
- A  &  B  &  C  & LED \\
- 0  &  0  &  0  &  0  \\
- 0  &  0  &  1  &  1  \\
- 0  &  1  &  0  &  1  \\
- 0  &  1  &  1  &  0  \\
- 1  &  0  &  0  &  1  \\
- 1  &  0  &  1  &  0  \\
- 1  &  1  &  0  &  0  \\
- 1  &  1  &  1  &  1  \\
-\end{tabular}
+Misalkan ketika push button ditekan nilai logikanya adalah 0 dan 
+LED akan menyala jika nilai logika adalah 0, maka dapat diperoleh tabel
+sebagai berikut.
+
+\input{tabel_deteksi_ganjil3}
 
 \begin{equation*}
-LED = \bar{A}\bar{B}C + \bar{A}B\bar{C} + A\bar{B}\bar{C} + ABC
+LED = ABC + \bar{A}\bar{B}C + \bar{A}B\bar{C} + A\bar{B}\bar{C}
 \end{equation*}
+
+Kode Verilog yang mengimplementasikan persamaan logika di atas adalah
+sebagai berikut.
+\begin{verilogcode}
+module deteksi_ganjil_3(
+  input wire A,
+  input wire B,
+  input wire C,
+  output wire led );
+
+  assign led = (A & B & C) | (~A & ~B & C) | (~A & B & ~C) | (A & ~B & ~C);
+
+endmodule
+\end{verilogcode}
+
 
 \subsection{BCD decoder}
 

@@ -1,0 +1,62 @@
+$date
+	Sun Feb 26 22:24:49 2017
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module test_click_counter_4bit $end
+$var wire 4 ! count [3:0] $end
+$var reg 1 " click $end
+$var reg 1 # enable $end
+$var reg 1 $ reset $end
+$scope module UUT $end
+$var wire 1 % clock $end
+$var wire 1 & enable $end
+$var wire 1 ' reset $end
+$var reg 4 ( count [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx (
+0'
+0&
+1%
+0$
+0#
+1"
+bx !
+$end
+#5000
+b0 (
+b0 !
+1$
+1'
+#10000
+b1 (
+b1 !
+1#
+1&
+0$
+0'
+#15000
+0"
+0%
+#16000
+b10 (
+b10 !
+1"
+1%
+#21000
+0"
+0%
+#22000
+b11 (
+b11 !
+1"
+1%
+#422000

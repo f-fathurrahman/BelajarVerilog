@@ -5,7 +5,7 @@ module counter_4bit_up( clock, reset, enable, count );
   input enable;
   output reg [3:0] count;
 
-  always @(posedge clock)
+  always @(posedge clock, enable, reset)
   begin
     if(reset == 1'b1)
       count <= 4'b0000;
