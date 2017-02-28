@@ -1,0 +1,348 @@
+|tes_mux_sseg_counter4_up
+clk => clk.IN6
+btn[0] => btn[0].IN1
+btn[1] => btn[1].IN1
+btn[2] => btn[2].IN1
+btn[3] => btn[3].IN1
+reset => reset.IN1
+led[0] <= cnt0[0].DB_MAX_OUTPUT_PORT_TYPE
+led[1] <= cnt0[1].DB_MAX_OUTPUT_PORT_TYPE
+led[2] <= cnt0[2].DB_MAX_OUTPUT_PORT_TYPE
+led[3] <= cnt0[3].DB_MAX_OUTPUT_PORT_TYPE
+sseg[0] <= mux_sseg_4dig:MUXSSEG.port7
+sseg[1] <= mux_sseg_4dig:MUXSSEG.port7
+sseg[2] <= mux_sseg_4dig:MUXSSEG.port7
+sseg[3] <= mux_sseg_4dig:MUXSSEG.port7
+sseg[4] <= mux_sseg_4dig:MUXSSEG.port7
+sseg[5] <= mux_sseg_4dig:MUXSSEG.port7
+sseg[6] <= mux_sseg_4dig:MUXSSEG.port7
+sseg[7] <= mux_sseg_4dig:MUXSSEG.port7
+en_dig[0] <= mux_sseg_4dig:MUXSSEG.port6
+en_dig[1] <= mux_sseg_4dig:MUXSSEG.port6
+en_dig[2] <= mux_sseg_4dig:MUXSSEG.port6
+en_dig[3] <= mux_sseg_4dig:MUXSSEG.port6
+
+
+|tes_mux_sseg_counter4_up|debouncer:DB0
+clk => PB_state~reg0.CLK
+clk => PB_cnt[0].CLK
+clk => PB_cnt[1].CLK
+clk => PB_cnt[2].CLK
+clk => PB_cnt[3].CLK
+clk => PB_cnt[4].CLK
+clk => PB_cnt[5].CLK
+clk => PB_cnt[6].CLK
+clk => PB_cnt[7].CLK
+clk => PB_cnt[8].CLK
+clk => PB_cnt[9].CLK
+clk => PB_cnt[10].CLK
+clk => PB_cnt[11].CLK
+clk => PB_cnt[12].CLK
+clk => PB_cnt[13].CLK
+clk => PB_cnt[14].CLK
+clk => PB_cnt[15].CLK
+clk => PB_sync_1.CLK
+clk => PB_sync_0.CLK
+PB => PB_sync_0.DATAIN
+PB_state <= PB_state~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|tes_mux_sseg_counter4_up|debouncer:DB1
+clk => PB_state~reg0.CLK
+clk => PB_cnt[0].CLK
+clk => PB_cnt[1].CLK
+clk => PB_cnt[2].CLK
+clk => PB_cnt[3].CLK
+clk => PB_cnt[4].CLK
+clk => PB_cnt[5].CLK
+clk => PB_cnt[6].CLK
+clk => PB_cnt[7].CLK
+clk => PB_cnt[8].CLK
+clk => PB_cnt[9].CLK
+clk => PB_cnt[10].CLK
+clk => PB_cnt[11].CLK
+clk => PB_cnt[12].CLK
+clk => PB_cnt[13].CLK
+clk => PB_cnt[14].CLK
+clk => PB_cnt[15].CLK
+clk => PB_sync_1.CLK
+clk => PB_sync_0.CLK
+PB => PB_sync_0.DATAIN
+PB_state <= PB_state~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|tes_mux_sseg_counter4_up|debouncer:DB2
+clk => PB_state~reg0.CLK
+clk => PB_cnt[0].CLK
+clk => PB_cnt[1].CLK
+clk => PB_cnt[2].CLK
+clk => PB_cnt[3].CLK
+clk => PB_cnt[4].CLK
+clk => PB_cnt[5].CLK
+clk => PB_cnt[6].CLK
+clk => PB_cnt[7].CLK
+clk => PB_cnt[8].CLK
+clk => PB_cnt[9].CLK
+clk => PB_cnt[10].CLK
+clk => PB_cnt[11].CLK
+clk => PB_cnt[12].CLK
+clk => PB_cnt[13].CLK
+clk => PB_cnt[14].CLK
+clk => PB_cnt[15].CLK
+clk => PB_sync_1.CLK
+clk => PB_sync_0.CLK
+PB => PB_sync_0.DATAIN
+PB_state <= PB_state~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|tes_mux_sseg_counter4_up|debouncer:DB3
+clk => PB_state~reg0.CLK
+clk => PB_cnt[0].CLK
+clk => PB_cnt[1].CLK
+clk => PB_cnt[2].CLK
+clk => PB_cnt[3].CLK
+clk => PB_cnt[4].CLK
+clk => PB_cnt[5].CLK
+clk => PB_cnt[6].CLK
+clk => PB_cnt[7].CLK
+clk => PB_cnt[8].CLK
+clk => PB_cnt[9].CLK
+clk => PB_cnt[10].CLK
+clk => PB_cnt[11].CLK
+clk => PB_cnt[12].CLK
+clk => PB_cnt[13].CLK
+clk => PB_cnt[14].CLK
+clk => PB_cnt[15].CLK
+clk => PB_sync_1.CLK
+clk => PB_sync_0.CLK
+PB => PB_sync_0.DATAIN
+PB_state <= PB_state~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|tes_mux_sseg_counter4_up|debouncer:DBr
+clk => PB_state~reg0.CLK
+clk => PB_cnt[0].CLK
+clk => PB_cnt[1].CLK
+clk => PB_cnt[2].CLK
+clk => PB_cnt[3].CLK
+clk => PB_cnt[4].CLK
+clk => PB_cnt[5].CLK
+clk => PB_cnt[6].CLK
+clk => PB_cnt[7].CLK
+clk => PB_cnt[8].CLK
+clk => PB_cnt[9].CLK
+clk => PB_cnt[10].CLK
+clk => PB_cnt[11].CLK
+clk => PB_cnt[12].CLK
+clk => PB_cnt[13].CLK
+clk => PB_cnt[14].CLK
+clk => PB_cnt[15].CLK
+clk => PB_sync_1.CLK
+clk => PB_sync_0.CLK
+PB => PB_sync_0.DATAIN
+PB_state <= PB_state~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|tes_mux_sseg_counter4_up|counter4_up:CNT0
+clk => cnt[0]~reg0.CLK
+clk => cnt[1]~reg0.CLK
+clk => cnt[2]~reg0.CLK
+clk => cnt[3]~reg0.CLK
+rst => cnt[0]~reg0.ACLR
+rst => cnt[1]~reg0.ACLR
+rst => cnt[2]~reg0.ACLR
+rst => cnt[3]~reg0.ACLR
+cnt[0] <= cnt[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[1] <= cnt[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[2] <= cnt[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[3] <= cnt[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|tes_mux_sseg_counter4_up|counter4_up:CNT1
+clk => cnt[0]~reg0.CLK
+clk => cnt[1]~reg0.CLK
+clk => cnt[2]~reg0.CLK
+clk => cnt[3]~reg0.CLK
+rst => cnt[0]~reg0.ACLR
+rst => cnt[1]~reg0.ACLR
+rst => cnt[2]~reg0.ACLR
+rst => cnt[3]~reg0.ACLR
+cnt[0] <= cnt[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[1] <= cnt[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[2] <= cnt[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[3] <= cnt[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|tes_mux_sseg_counter4_up|counter4_up:CNT2
+clk => cnt[0]~reg0.CLK
+clk => cnt[1]~reg0.CLK
+clk => cnt[2]~reg0.CLK
+clk => cnt[3]~reg0.CLK
+rst => cnt[0]~reg0.ACLR
+rst => cnt[1]~reg0.ACLR
+rst => cnt[2]~reg0.ACLR
+rst => cnt[3]~reg0.ACLR
+cnt[0] <= cnt[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[1] <= cnt[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[2] <= cnt[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[3] <= cnt[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|tes_mux_sseg_counter4_up|counter4_up:CNT3
+clk => cnt[0]~reg0.CLK
+clk => cnt[1]~reg0.CLK
+clk => cnt[2]~reg0.CLK
+clk => cnt[3]~reg0.CLK
+rst => cnt[0]~reg0.ACLR
+rst => cnt[1]~reg0.ACLR
+rst => cnt[2]~reg0.ACLR
+rst => cnt[3]~reg0.ACLR
+cnt[0] <= cnt[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[1] <= cnt[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[2] <= cnt[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[3] <= cnt[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|tes_mux_sseg_counter4_up|hex_to_sseg_case:BCD4SSEG0
+hex[0] => Decoder0.IN3
+hex[1] => Decoder0.IN2
+hex[2] => Decoder0.IN1
+hex[3] => Decoder0.IN0
+sseg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+sseg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+sseg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+sseg[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+sseg[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+sseg[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+sseg[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+sseg[7] <= <VCC>
+
+
+|tes_mux_sseg_counter4_up|hex_to_sseg_case:BCD4SSEG1
+hex[0] => Decoder0.IN3
+hex[1] => Decoder0.IN2
+hex[2] => Decoder0.IN1
+hex[3] => Decoder0.IN0
+sseg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+sseg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+sseg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+sseg[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+sseg[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+sseg[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+sseg[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+sseg[7] <= <VCC>
+
+
+|tes_mux_sseg_counter4_up|hex_to_sseg_case:BCD4SSEG2
+hex[0] => Decoder0.IN3
+hex[1] => Decoder0.IN2
+hex[2] => Decoder0.IN1
+hex[3] => Decoder0.IN0
+sseg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+sseg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+sseg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+sseg[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+sseg[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+sseg[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+sseg[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+sseg[7] <= <VCC>
+
+
+|tes_mux_sseg_counter4_up|hex_to_sseg_case:BCD4SSEG3
+hex[0] => Decoder0.IN3
+hex[1] => Decoder0.IN2
+hex[2] => Decoder0.IN1
+hex[3] => Decoder0.IN0
+sseg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+sseg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+sseg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+sseg[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+sseg[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+sseg[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+sseg[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+sseg[7] <= <VCC>
+
+
+|tes_mux_sseg_counter4_up|mux_sseg_4dig:MUXSSEG
+clk => q_reg[0].CLK
+clk => q_reg[1].CLK
+clk => q_reg[2].CLK
+clk => q_reg[3].CLK
+clk => q_reg[4].CLK
+clk => q_reg[5].CLK
+clk => q_reg[6].CLK
+clk => q_reg[7].CLK
+clk => q_reg[8].CLK
+clk => q_reg[9].CLK
+clk => q_reg[10].CLK
+clk => q_reg[11].CLK
+clk => q_reg[12].CLK
+clk => q_reg[13].CLK
+clk => q_reg[14].CLK
+clk => q_reg[15].CLK
+clk => q_reg[16].CLK
+clk => q_reg[17].CLK
+reset => q_reg[0].ACLR
+reset => q_reg[1].ACLR
+reset => q_reg[2].ACLR
+reset => q_reg[3].ACLR
+reset => q_reg[4].ACLR
+reset => q_reg[5].ACLR
+reset => q_reg[6].ACLR
+reset => q_reg[7].ACLR
+reset => q_reg[8].ACLR
+reset => q_reg[9].ACLR
+reset => q_reg[10].ACLR
+reset => q_reg[11].ACLR
+reset => q_reg[12].ACLR
+reset => q_reg[13].ACLR
+reset => q_reg[14].ACLR
+reset => q_reg[15].ACLR
+reset => q_reg[16].ACLR
+reset => q_reg[17].ACLR
+dig3[0] => Mux7.IN0
+dig3[1] => Mux6.IN0
+dig3[2] => Mux5.IN0
+dig3[3] => Mux4.IN0
+dig3[4] => Mux3.IN0
+dig3[5] => Mux2.IN0
+dig3[6] => Mux1.IN0
+dig3[7] => Mux0.IN0
+dig2[0] => Mux7.IN1
+dig2[1] => Mux6.IN1
+dig2[2] => Mux5.IN1
+dig2[3] => Mux4.IN1
+dig2[4] => Mux3.IN1
+dig2[5] => Mux2.IN1
+dig2[6] => Mux1.IN1
+dig2[7] => Mux0.IN1
+dig1[0] => Mux7.IN2
+dig1[1] => Mux6.IN2
+dig1[2] => Mux5.IN2
+dig1[3] => Mux4.IN2
+dig1[4] => Mux3.IN2
+dig1[5] => Mux2.IN2
+dig1[6] => Mux1.IN2
+dig1[7] => Mux0.IN2
+dig0[0] => Mux7.IN3
+dig0[1] => Mux6.IN3
+dig0[2] => Mux5.IN3
+dig0[3] => Mux4.IN3
+dig0[4] => Mux3.IN3
+dig0[5] => Mux2.IN3
+dig0[6] => Mux1.IN3
+dig0[7] => Mux0.IN3
+en_dig[0] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+en_dig[1] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+en_dig[2] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+en_dig[3] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+sseg[0] <= Mux7.DB_MAX_OUTPUT_PORT_TYPE
+sseg[1] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+sseg[2] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+sseg[3] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+sseg[4] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+sseg[5] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+sseg[6] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+sseg[7] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
