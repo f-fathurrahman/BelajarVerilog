@@ -90,11 +90,10 @@ Prosedur ini diberikan pada contoh menyalakan LED.
 
 \subsubsection{LED}
 
-Buat proyek baru dengan nama \textbf{led\_light}, misalnya.
-Kemudian tambahkan file Verilog berikut
-ke project. Kode Verilog ini memberikan nilai logika ke tiap
+Buat file baru dengan nama \textbf{led\_light.v}, misalnya.
+Kemudian ketik kode Verilog berikut pada file tersebut.
+Kode Verilog ini memberikan nilai logika ke tiap
 LED (hardwired, tanpa ada input).
-
 
 {\setstretch{1.0}
 \begin{verilogcode}
@@ -272,30 +271,11 @@ endmodule
 \end{verilogcode}
 
 
-\subsection{BCD decoder}
+\subsection{\textit{Converter} BCD ke \textit{seven-segment}}
 
-
-\subsection{Rangkaian kombinasional}
-
-- rangkaian pendeteksi genap ganjil, input 4 PB, output 1 LED
-
-- Input PB -> BCD -> seven segment
-
-- IR -> BCD -> seven segment
-
-- Implementasi XOR
-
-- half adder dan full adder
-
-- Menyalakan satu atau beberapa LED dengan kombinasi input
-4 push button yang diberikan.
-\begin{itemize}
-\item LED1 menyala jika button1 dan button3 ditekan atau button1 dan button 4 ditekan
-\item LED2 menyala jika button2 dan button4 ditekan atau button1 ditekan
-\end{itemize}
-
-- Input BCD (dari ) ke output seven segment. Buat tabel kebenaran dan rangkaian (dalam skematik
-atau Verilog struktural).
+Input BCD (dari ) ke output seven segment. Buat tabel kebenaran dan rangkaian (dalam skematik
+atau Verilog struktural). Minimisasi persamaan logika yang diperoleh dengan menggunakan
+metode Karnaugh \textit{mapping}.
 
 {\centering
 \begin{tabular}{|c|c|c|c||c|c|c|c|c|c|c|c|}
@@ -314,24 +294,10 @@ PB1 & PB2 & PB3 & PB4 & a & b & c & d & e & f & g & dp \\
 \par}
 
 
-\subsection{Rangkaian sekuensial}
-
-- Implementasi D flip-flop
-
-- Implementasi J-K flip-flop dan
-
-- Implementasi T flip-flip. Toggle operation: buzzer dan LED
-
-- register, counter
-
-- Kalkulator sederhana, input dari remote IR ?
-
-- Rangkaian multiplexing LED
-
-- Menampilkan LED perdigit
-
-
 \section{Tugas Pendahuluan}
+
+- Tabel BCD (atau hexadesimal?) ke seven segment
 
 
 \end{document}
+
