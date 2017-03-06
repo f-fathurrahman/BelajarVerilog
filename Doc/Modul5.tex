@@ -45,8 +45,8 @@
   frametitlerulewidth=2pt
 }
 
-%\BeforeBeginEnvironment{minted}{\begin{mdframed}[backgroundcolor=mintedbg]}
-%\AfterEndEnvironment{minted}{\end{mdframed}}
+\BeforeBeginEnvironment{minted}{\begin{mdframed}[backgroundcolor=mintedbg]}
+\AfterEndEnvironment{minted}{\end{mdframed}}
 
 
 \begin{document}
@@ -60,8 +60,22 @@ Implementasi Rangkaian Digital dengan FPGA}
 
 \section{Tujuan}
 
+Tujuan dari praktikum ini adalah sebagai berikut,
+\begin{enumerate}
+\item mengenal teknik pemrograman FPGA dengan menggunakan bahasa deskripsi hardware (Verilog)
+dan skematik
+\item mengenal gerbang-gerbang logika dan membuat rangkaian digital sederhana dengan
+skematik dan bahasa deskripsi hardware
+\end{enumerate}
+
+
+
 \section{Alat dan Bahan}
 
+\begin{enumerate}
+\item Komputer / laptop dengan aplikasi Quartus Prime
+\item Board FPGA (Altera Cyclone IV E)
+\end{enumerate}
 
 \section{Dasar Teori}
 
@@ -75,22 +89,50 @@ Entri desain
 
 \section{Praktikum}
 
-\subsection{Pengenalan IO: LED dan push button}
+\begin{figure}[H]
+{\centering
+\includegraphics[width=0.5\textwidth]{images/foto_FPGA_v1.jpg}
+\par}
+\caption{FPGA Board Versi A}
+\end{figure}
 
-{\color{red} Perlu gambar board FPGA yang akan digunakan}
+{\color{red}Perlu gambar FPGA yang kedua dan informasi PIN untuk board kedua.}
 
-Beberapa daftar port dari board FPGA yang digunakan:
+Berikut ini adalah pedoman umum yang akan kita lakukan pada praktikum ini.
 
-\input{tabel_pin.tex}
+\begin{itemize}
+
+\item Buat proyek Quartus Prime baru, misalkan dengan nama \textbf{Modul5\_Kelompok\_XX}.
+di dalam direktori dengan nama yang sama. \textit{Hindari penggunaan
+spasi dalam nama proyek}.
+
+\item Langkah untuk menambahkan file skematik baru dapat dilakukan sesuai dengan langkah yang
+dijelaskan pada bagian \ref{subsec:skematik}. Penambahan file Verilog
+juga dapat dilakukan dengan cara yang mirip.
+
+\item Sebelum melakukan kompilasi desain (skematik atau Verilog)
+pastikan bahwa desain tersebut telah dibuat menjadi top-level entity
+\footnote{Top-level entity mirip dengan fungsi \texttt{main} pada bahasa C/C++}
+melalui menu \textbf{Project $\rightarrow$ Set as Top-Level Entity} atau
+keyboard shortcut \textbf{Ctrl+Shift+J}.
+
+\end{itemize}
 
 Untuk PIN assignment, buat skematik atau file Verilog terlebih dahulu, kemudian compile.
 Buka PIN assignment, set pin yang diperlukan.
 
 Prosedur ini diberikan pada contoh menyalakan LED.
 
+\subsection{Pengenalan IO: LED dan push button}
+
 \subsubsection{LED}
 
-Buat file baru dengan nama \textbf{led\_light.v}, misalnya.
+LED merupakan output yang paling sederhana pada board FPGA yang akan
+kita gunakan. Salah satu tujuan utama dari eksperimen ini adalah
+untuk mengetahui keadaan LED apabila diberikan nilai logika 0 atau 1.
+
+Buat file baru dengan nama \textbf{led\_light.v},
+misalnya. \textit{Hindari nama file dengan menggunakan spasi}.
 Kemudian ketik kode Verilog berikut pada file tersebut.
 Kode Verilog ini memberikan nilai logika ke tiap
 LED (hardwired, tanpa ada input).
@@ -105,14 +147,15 @@ endmodule
 }
 
 Compile file ini dengan cara klik icon \textbf{Compile} atau dengan menu
-\textbf{Processing -> Start Compilation} atau menggunakan shortcut
+\textbf{Processing $\rightarrow$ Start Compilation} atau menggunakan shortcut
 \textbf{Ctrl + L}.
 
 Jika tidak ada kesalahan pada saat proses kompilasi,
 maka langkah selanjutnya adalah melakukan
 PIN assignment, yang dapat dilakukan dengan memilih menu
-\textbf{Assignment -> Pin Planner} atau menggunakan shortcut
-\textbf{Ctrl + N}. Atur PIN assigment sesuai dengan Tabel \ref{tab:pin}.
+\textbf{Assignment $\rightarrow$ Pin Planner} atau menggunakan shortcut
+\textbf{Ctrl + N}. Atur PIN assigment sesuai dengan keperluan.
+Jendela PIN assignment ini dapat dibiarkan terbuka.
 
 \begin{figure}[H]
 \centering
@@ -121,11 +164,11 @@ PIN assignment, yang dapat dilakukan dengan memilih menu
 \caption{PIN Assignment untuk 4 LED}
 \end{figure}
 
-Compile lagi file tersebut.
+\textit{Compile lagi file tersebut setelah PIN assignment dilakukan}.
 
 Jika tidak ada pesan error, langkah selanjutnya adalah mendownload program
 ini ke FPGA. Proses ini dapat dilakukan dengan cara memilih menu
-\textbf{Tools -> Programmer}.
+\textbf{Tools $\rightarrow$ Programmer}.
 Klik button \textbf{Add File} untuk menambahkan file {\tt led\_light.sof}.
 File ini biasanya ada di dalam subdirektori {\tt output} dari direktori
 proyek.
@@ -139,7 +182,6 @@ dengan mengklik button \textbf{Hardware Setup}.
 \caption{Tampilan tool \textbf{Programmer}}
 \end{figure}
 
-\begin{mdframed}[style=verilognotes,frametitle={Catatan Verilog}]
 Misalkan pada board FPGA yang digunakan urutan LED dari kiri ke kanan adalah LED1,
 LED2, LED3, dan LED4.
 
@@ -172,7 +214,6 @@ melakukan assigment sebagai berikut.
 \item LED4 diwakili dengan {\tt led[4]}
 \end{itemize}
 
-\end{mdframed}
 
 Cobalah bereksprimen dengan cara mengganti-ganti nilai logika
 dari {\tt led}, kemudian isilah tabel berikut.
@@ -230,7 +271,45 @@ Nilai logika & Keadaan PB \\
 
 \subsubsection{Seven segments}
 
-Lihat Modul 1.
+Lihat juga Modul 1.
+
+Berikut ini adalah tabel nomor PIN terkait dengan seven-segment display
+yang diberikan oleh distributor FPGA.
+
+\begin{table}[H]
+\caption{Port Seven-segment LED}\label{tab:pin_sseg}
+\centering
+\begin{tabular}{|c|c|}
+\hline 
+\multicolumn{2}{|c|}{Seven-segment LED} \\
+\hline 
+DIG1 & PIN\_133 \\
+\hline 
+DIG2 & PIN\_135 \\
+\hline 
+DIG3 & PIN\_136 \\
+\hline 
+DIG4 & PIN\_137 \\
+\hline 
+SEG0 & PIN\_128 \\
+\hline 
+SEG1 & PIN\_121 \\
+\hline 
+SEG2 & PIN\_125 \\
+\hline
+SEG3 & PIN\_129 \\
+\hline
+SEG4 & PIN\_132 \\
+\hline
+SEG5 & PIN\_126 \\
+\hline
+SEG6 & PIN\_124 \\
+\hline
+SEG7 & PIN\_127 \\
+\hline 
+\end{tabular}
+\par
+\end{table}
 
 
 
@@ -296,7 +375,18 @@ PB1 & PB2 & PB3 & PB4 & a & b & c & d & e & f & g & dp \\
 
 \section{Tugas Pendahuluan}
 
-- Tabel BCD (atau hexadesimal?) ke seven segment
+\begin{enumerate}
+
+\item Carilah informasi umum mengenai FPGA:
+\begin{itemize}
+\item penggunaan FPGA
+\item perbandingan FPGA dengan mikrokontroler, kelebihan dan kekurangan
+\end{itemize}
+
+\item Carilah informasi mengenai bahasa deksripsi hardware, terutama Verilog.
+
+\item Lengkapi tabel kebenaran untuk konversi dari BCD ke seven segment.
+\end{enumerate}
 
 
 \end{document}
