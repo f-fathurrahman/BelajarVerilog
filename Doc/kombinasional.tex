@@ -1,0 +1,77 @@
+\subsection{Rangkaian kombinasional}
+
+\subsubsection{Rangkaian XOR}
+
+\textbf{TUGAS}
+
+Buatlah rangkaian digital dengan spesifikasi sebagai berikut.
+\begin{itemize}
+\item Input dua buah push button, output 1 LED
+\item LED akan menyala jika dan hanya jika 1 push button ditekan.
+\end{itemize}
+
+Implementasikan dengan menggukan gerbang logika AND, OR, dan NOT
+(jika diperlukan). (Verilog + skematik)
+
+\subsubsection{Pendeteksi ganjil}
+
+Membuat rangkaian logika digital sederhana dengan spesifikasi sebagai berikut.
+
+\begin{itemize}
+\item input push button sebanyak 3 buah, misalkan bernama {\tt A}, {\tt B}
+dan {\tt C}
+\item output berupa satu LED dengan nama {\tt led}
+\item LED akan menyala jika jumlah push button
+yang ditekan ganjil
+\end{itemize}
+
+Misalkan ketika push button ditekan nilai logikanya adalah 1 dan 
+LED akan menyala jika nilai logika adalah 1, maka dapat diperoleh tabel
+sebagai berikut.
+
+\input{tabel_deteksi_ganjil3}
+
+\begin{equation*}
+\mathrm{LED} = ABC + \bar{A}\bar{B}C + \bar{A}B\bar{C} + A\bar{B}\bar{C}
+\end{equation*}
+
+Kode Verilog yang mengimplementasikan persamaan logika di atas adalah
+sebagai berikut.
+\begin{verilogcode}
+module deteksi_ganjil_3(
+  input A, input B, input C,
+  output led );
+
+  assign led = ( A & B &  C) | (~A & ~B &  C) | 
+               (~A & B & ~C) | ( A & ~B & ~C);
+
+endmodule
+\end{verilogcode}
+
+\textbf{TUGAS} Buatlah desain (skematik atau Verilog) untuk mendeteksi apakah
+jumlah push button yang ditekan adalah ganjil untuk \textbf{empat} buah
+push button. Sederhanakan persamaan logika yang diperoleh jika diperlukan
+dengan metode Karnaugh map.
+
+
+\subsubsection{\textit{Converter} BCD ke \textit{seven-segment}}
+
+Input BCD (dari ) ke output seven segment. Buat tabel kebenaran dan rangkaian (dalam skematik
+atau Verilog struktural). Minimisasi persamaan logika yang diperoleh dengan menggunakan
+metode Karnaugh \textit{mapping}.
+
+{\centering
+\begin{tabular}{|c|c|c|c||c|c|c|c|c|c|c|c|}
+\hline
+\multicolumn{4}{|c||}{Input} & \multicolumn{8}{|c|}{Output} \\
+\hline
+PB1 & PB2 & PB3 & PB4 & a & b & c & d & e & f & g & dp \\
+\hline
+0 & 0 & 0 & 0 &  &  &  &  &  &  &  & \\
+0 & 0 & 0 & 1 &  &  &  &  &  &  &  & \\
+0 & 0 & 1 & 0 &  &  &  &  &  &  &  & \\
+... & ... & ... & ... &  &  &  &  &  &  &  & \\
+1 & 1 & 1 & 1 &  &  &  &  &  &  &  & \\
+\hline
+\end{tabular}
+\par}

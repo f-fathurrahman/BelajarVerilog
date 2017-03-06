@@ -89,6 +89,8 @@ Entri desain
 
 \section{Praktikum}
 
+Berikut ini adalah board FPGA yang akan kita gunakan dalam praktikum ini.
+
 \begin{figure}[H]
 {\centering
 \includegraphics[width=0.5\textwidth]{images/foto_FPGA_v1.jpg}
@@ -112,265 +114,27 @@ juga dapat dilakukan dengan cara yang mirip.
 
 \item Sebelum melakukan kompilasi desain (skematik atau Verilog)
 pastikan bahwa desain tersebut telah dibuat menjadi top-level entity
-\footnote{Top-level entity mirip dengan fungsi \texttt{main} pada bahasa C/C++}
+\footnote{Top-level entity memiliki peran yang sama
+dengan fungsi \texttt{main} pada bahasa C/C++}
 melalui menu \textbf{Project $\rightarrow$ Set as Top-Level Entity} atau
 keyboard shortcut \textbf{Ctrl+Shift+J}.
 
+\item Lakukan kompilasi setelah desain selesai dibuat.
+
+\item Lakukan PIN assignment. Pastikan bahwa semua port yang akan digunakan
+telah diberikan PIN yang sesuai.
+
+\item Lakukan kompilasi sekali lagi.
+
+\item Download desain yang telah dibuat ke FPGA dan verifikasi apakah telah berjalan
+sesuai dengan yang diharapkan.
 \end{itemize}
 
-Untuk PIN assignment, buat skematik atau file Verilog terlebih dahulu, kemudian compile.
-Buka PIN assignment, set pin yang diperlukan.
+Langkah-langkah tersebut akan diilustrasikan pada eksperimen dengan LED.
 
-Prosedur ini diberikan pada contoh menyalakan LED.
+\input{pengenalan_io}
 
-\subsection{Pengenalan IO: LED dan push button}
-
-\subsubsection{LED}
-
-LED merupakan output yang paling sederhana pada board FPGA yang akan
-kita gunakan. Salah satu tujuan utama dari eksperimen ini adalah
-untuk mengetahui keadaan LED apabila diberikan nilai logika 0 atau 1.
-
-Buat file baru dengan nama \textbf{led\_light.v},
-misalnya. \textit{Hindari nama file dengan menggunakan spasi}.
-Kemudian ketik kode Verilog berikut pada file tersebut.
-Kode Verilog ini memberikan nilai logika ke tiap
-LED (hardwired, tanpa ada input).
-
-{\setstretch{1.0}
-\begin{verilogcode}
-module led_light(led);
-  output[3:0] led;
-  assign led = 4'b0000; // coba ubah-ubah nilai ini untuk tiap LED
-endmodule
-\end{verilogcode}
-}
-
-Compile file ini dengan cara klik icon \textbf{Compile} atau dengan menu
-\textbf{Processing $\rightarrow$ Start Compilation} atau menggunakan shortcut
-\textbf{Ctrl + L}.
-
-Jika tidak ada kesalahan pada saat proses kompilasi,
-maka langkah selanjutnya adalah melakukan
-PIN assignment, yang dapat dilakukan dengan memilih menu
-\textbf{Assignment $\rightarrow$ Pin Planner} atau menggunakan shortcut
-\textbf{Ctrl + N}. Atur PIN assigment sesuai dengan keperluan.
-Jendela PIN assignment ini dapat dibiarkan terbuka.
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.5]{images/PinPlanner_4LED.png}
-\par
-\caption{PIN Assignment untuk 4 LED}
-\end{figure}
-
-\textit{Compile lagi file tersebut setelah PIN assignment dilakukan}.
-
-Jika tidak ada pesan error, langkah selanjutnya adalah mendownload program
-ini ke FPGA. Proses ini dapat dilakukan dengan cara memilih menu
-\textbf{Tools $\rightarrow$ Programmer}.
-Klik button \textbf{Add File} untuk menambahkan file {\tt led\_light.sof}.
-File ini biasanya ada di dalam subdirektori {\tt output} dari direktori
-proyek.
-Pastikan juga hardware telah terdeteksi. Jika belum terdeteksi, tambahkan melalui
-dengan mengklik button \textbf{Hardware Setup}.
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.6]{images/Programmer_4LED.png}
-\par
-\caption{Tampilan tool \textbf{Programmer}}
-\end{figure}
-
-Misalkan pada board FPGA yang digunakan urutan LED dari kiri ke kanan adalah LED1,
-LED2, LED3, dan LED4.
-
-Misalkan memberikan assignment sebagai berikut.
-\begin{itemize}
-\item LED1 diwakili dengan {\tt led[0]}
-\item LED2 diwakili dengan {\tt led[1]}
-\item LED3 diwakili dengan {\tt led[2]}
-\item LED4 diwakili dengan {\tt led[3]}
-\end{itemize}
-
-
-Misalkan juga kita memberikan nilai logika pada {\tt led} dengan
-kode Verilog berikut.
-\begin{verilogcode}
-  led = 4'b1010;
-\end{verilogcode}
-Maka nilai 0 (nilai bit paling kanan atau LSB) diberikan pada {\tt led[0]}
-atau LED1. Nilai pada bit kedua dari kanan diberikan untuk {\tt led[1]}, bit ketiga
-untuk {\tt led[2]}, dan bit keempat (paling kiri atau MSB) untuk {\tt led[3]}.
-
-Bagian {\tt output [3:0] led} pada kode di atas dapat diganti
-dengan {\tt output [1:4] led} untuk memudahkan assignment nilai logika
-sesuai dengan urutan LED di board yang digunakan. Sehingga kita dapat
-melakukan assigment sebagai berikut.
-\begin{itemize}
-\item LED1 diwakili dengan {\tt led[1]}
-\item LED2 diwakili dengan {\tt led[2]}
-\item LED3 diwakili dengan {\tt led[3]}
-\item LED4 diwakili dengan {\tt led[4]}
-\end{itemize}
-
-
-Cobalah bereksprimen dengan cara mengganti-ganti nilai logika
-dari {\tt led}, kemudian isilah tabel berikut.
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|}
-\hline
-Nilai logika & Keadaan LED (on/off) \\
-\hline
-0 & \\
-1 & \\
-\hline
-\end{tabular}
-\par
-\end{table}
-
-
-\subsubsection{Push buttons}
-
-Buat project baru, dan buat file Verilog dengan mendefiniskan satu modul
-dengan input dari push button dan output ke LED.
-\begin{verilogcode}
-module test_buttons( buttons, led );
-  input  [3:0] buttons;
-  output [3:0] led;
-
-  assign led = buttons;
-endmodule
-\end{verilogcode}
-
-Bisa juga menggunakan potongan kode berikut.
-\begin{verilogcode}
-  assign led[0] = buttons[0];
-  assign led[1] = buttons[1];
-  assign led[2] = buttons[2];
-  assign led[3] = buttons[3];
-\end{verilogcode}
-
-Cobalah bereksperimen dengan kode Verilog yang ada dan juga menggukan operator Verilog
-seperti 
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|}
-\hline
-Nilai logika & Keadaan PB \\
-\hline
-0 & \\
-1 & \\
-\hline
-\end{tabular}
-\par
-\end{table}
-
-\subsubsection{Seven segments}
-
-Lihat juga Modul 1.
-
-Berikut ini adalah tabel nomor PIN terkait dengan seven-segment display
-yang diberikan oleh distributor FPGA.
-
-\begin{table}[H]
-\caption{Port Seven-segment LED}\label{tab:pin_sseg}
-\centering
-\begin{tabular}{|c|c|}
-\hline 
-\multicolumn{2}{|c|}{Seven-segment LED} \\
-\hline 
-DIG1 & PIN\_133 \\
-\hline 
-DIG2 & PIN\_135 \\
-\hline 
-DIG3 & PIN\_136 \\
-\hline 
-DIG4 & PIN\_137 \\
-\hline 
-SEG0 & PIN\_128 \\
-\hline 
-SEG1 & PIN\_121 \\
-\hline 
-SEG2 & PIN\_125 \\
-\hline
-SEG3 & PIN\_129 \\
-\hline
-SEG4 & PIN\_132 \\
-\hline
-SEG5 & PIN\_126 \\
-\hline
-SEG6 & PIN\_124 \\
-\hline
-SEG7 & PIN\_127 \\
-\hline 
-\end{tabular}
-\par
-\end{table}
-
-
-
-\subsection{Rangkaian kombinasional}
-
-Membuat rangkaian logika digital sederhana dengan spesifikasi sebagai berikut.
-
-\begin{itemize}
-\item input push button sebanyak 3 buah, misalkan bernama {\tt A}, {\tt B}
-dan {\tt C}
-\item output berupa satu LED dengan nama {\tt led}
-\item LED akan menyala jika jumlah push button
-yang ditekan ganjil
-\end{itemize}
-
-Misalkan ketika push button ditekan nilai logikanya adalah 0 dan 
-LED akan menyala jika nilai logika adalah 0, maka dapat diperoleh tabel
-sebagai berikut.
-
-\input{tabel_deteksi_ganjil3}
-
-\begin{equation*}
-LED = ABC + \bar{A}\bar{B}C + \bar{A}B\bar{C} + A\bar{B}\bar{C}
-\end{equation*}
-
-Kode Verilog yang mengimplementasikan persamaan logika di atas adalah
-sebagai berikut.
-\begin{verilogcode}
-module deteksi_ganjil_3(
-  input wire A,
-  input wire B,
-  input wire C,
-  output wire led );
-
-  assign led = (A & B & C) | (~A & ~B & C) | (~A & B & ~C) | (A & ~B & ~C);
-
-endmodule
-\end{verilogcode}
-
-
-\subsection{\textit{Converter} BCD ke \textit{seven-segment}}
-
-Input BCD (dari ) ke output seven segment. Buat tabel kebenaran dan rangkaian (dalam skematik
-atau Verilog struktural). Minimisasi persamaan logika yang diperoleh dengan menggunakan
-metode Karnaugh \textit{mapping}.
-
-{\centering
-\begin{tabular}{|c|c|c|c||c|c|c|c|c|c|c|c|}
-\hline
-\multicolumn{4}{|c||}{Input} & \multicolumn{8}{|c|}{Output} \\
-\hline
-PB1 & PB2 & PB3 & PB4 & a & b & c & d & e & f & g & dp \\
-\hline
-0 & 0 & 0 & 0 &  &  &  &  &  &  &  & \\
-0 & 0 & 0 & 1 &  &  &  &  &  &  &  & \\
-0 & 0 & 1 & 0 &  &  &  &  &  &  &  & \\
-... & ... & ... & ... &  &  &  &  &  &  &  & \\
-1 & 1 & 1 & 1 &  &  &  &  &  &  &  & \\
-\hline
-\end{tabular}
-\par}
+\input{kombinasional}
 
 
 \section{Tugas Pendahuluan}
