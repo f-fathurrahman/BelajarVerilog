@@ -10,7 +10,7 @@ module test_odd_zeros_detector();
   odd_zeros_detector UUT( A, B, C, led );
 
   initial begin
-       A = 0; B = 1; C = 1;
+    A = 0; B = 1; C = 1;
     #1 A = 1;
     #1 A = 0; B = 0; C = 0;
     #1 A = 1;
@@ -23,3 +23,5 @@ module test_odd_zeros_detector();
   end
 
 endmodule
+
+
